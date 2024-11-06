@@ -3,12 +3,24 @@ import JobDetails from "../JobDetails/JobDetails";
 import { CiDollar, CiLocationOn } from "react-icons/ci";
 import { PiSubtitles } from "react-icons/pi";
 import { MdOutlineEmail, MdOutlineLocalPhone } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+import { saveJobApplication } from "../../utility/localstorage";
 
 const Details = () => {
     const detailsJobs = useLoaderData()
     const { id } = useParams()
     const job = detailsJobs.find(job => job.id == id)
     console.log(id, job)
+
+
+    const handleApplied = ()=>{
+        saveJobApplication(id)
+        toast('applied job successfuly')
+    }
+
+
     return (
         <div>
             <JobDetails></JobDetails>
@@ -38,10 +50,11 @@ const Details = () => {
                     </div>
 
                     <div className="text-center mt-10">
-                        <button className="btn btn-success w-full text-white">Applied</button>
+                        <button onClick={handleApplied} className="btn btn-success w-full text-white">Applied</button>
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };

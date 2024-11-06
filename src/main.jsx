@@ -8,9 +8,10 @@ import {
 import Root from './components/Root/Root.jsx';
 import Home from './components/Home/Home.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
-import AppliedJobs from './components/AppliedJobs/AppliedJobs.jsx';
 import Blog from './components/Blog/Blog.jsx';
 import Details from './components/Details/Details.jsx';
+import ApplyJob from './components/ApplyJob/ApplyJob.jsx';
+import AppliedJob from './components/AppliedJob/AppliedJob.jsx';
 
 
 const router = createBrowserRouter([
@@ -27,8 +28,13 @@ const router = createBrowserRouter([
         element:<Statistics></Statistics>
       },
       {
-        path:'/applied',
-        element:<AppliedJobs></AppliedJobs>
+        path:'/appliedjob',
+        element:<AppliedJob></AppliedJob>,
+        loader:()=>fetch('/jobs.json')
+      },
+      {
+        path:'/apply',
+        element:<ApplyJob></ApplyJob>
       },
       {
         path:'/blog',
